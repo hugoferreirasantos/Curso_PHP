@@ -6,7 +6,7 @@ namespace Cliente;
 
 
 //Class Cadastro da pasta Cliente:
-class Cadastro  extends \Cadastro  { //arquivo que está na raís da pasta class:
+class Cadastro extends \Cadastro { //arquivo que está na raís da pasta class:
 
 	//Método:
 	public function registroVenda():string{

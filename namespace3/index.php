@@ -21,6 +21,7 @@ $cad->setSenha("456123");
 
 //Fazer a chamado do método registrar vendas:
 echo $cad->registroVenda();
+echo $cad;
 //Fim da chamada:
 
 

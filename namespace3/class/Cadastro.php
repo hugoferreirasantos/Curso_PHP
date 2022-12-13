@@ -1,7 +1,8 @@
 <?php
 
+
 //Class Cadastro:
-class Cadastro{
+class Cadastro implements Servicos{
 	//Atributos:
 	private $nome;
 	private $email;

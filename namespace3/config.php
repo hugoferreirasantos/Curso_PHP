@@ -15,5 +15,18 @@ spl_autoload_register(function($nomeClass){
 
 });
 
+spl_autoload_register(function($nameInter){
+
+	$dirInterface = "interface";
+	$filename = $dirInterface . DIRECTORY_SEPARATOR . $nameInter.".php";
+
+	if(file_exists($filename)){
+
+		require_once($filename);
+
+	}
+
+});
+
 
 ?>
