@@ -2,7 +2,7 @@
 // Fazer a exibição na tela:
 
 //Instânciar o objeto:
-$conn = new mysqli("localhost", "root", "","dbphp7" ); //IP, usuario, senha, banco de dados:
+$conn = new mysqli("127.0.0.1:3307", "root", "","dbphp7" ); //IP, usuario, senha, banco de dados:
 //Fim da instância:
 
 //Testa se a conexão deu certo:
@@ -32,7 +32,7 @@ while($row = $result->fetch_assoc()){ // Vai verifica se existe algum dado: linh
 	//Fim da Transformação:
 
 
-	//var_dump($row);
+	
 
 }
 
