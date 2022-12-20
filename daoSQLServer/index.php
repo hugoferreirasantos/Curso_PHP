@@ -29,7 +29,7 @@ echo $user; */
 
 //Carregar uma consulta por login e senha no banco:
 $usuario = new Usuario();
-$usuario->login("mario","742!@#D");
+$usuario->login("sergio","456@ERvb");
 
 echo $usuario;
 
