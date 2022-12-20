@@ -1,18 +1,16 @@
 <?php
-//Class Usuario:
-class Usuario {
 
+//Class Usuário:
+class Usuario{
 	//Atributos:
 	private $idusuario;
 	private $deslogin;
 	private $dessenha;
 	private $dtcadastro;
 
-
-
 	//Métodos:
 
-	 //GETS E SETS:
+	 //Inicio:GETS and SETS:
 	public function getIdusuario(){
 		return $this->idusuario;
 	}
@@ -44,21 +42,21 @@ class Usuario {
 	public function setDtcadastro($value){
 		$this->dtcadastro = $value;
 	}
-	//fim: GETS e SETS:
+	 //Fim:GETS and SETS:
 
 	public function loadById($id){
 
-		$sql = new Sql();
+		$sql = new SqlServer("dphp7","localhost\SQLEXPRESS02","sa","root");
 
-		$results = $sql->select("SELECT * FROM tb_usuario WHERE idusuario = :ID", array(
+		$results = $sql->select("SELECT * FROM tb_usuarios WHERE idusuario = :ID",array(
 			":ID"=>$id
-		)); 
+		));
 
-		//if(isset($results[0])){}
 		if(count($results) > 0){
 
 			$row = $results[0];
 
+			//Atribuir valores com os sets:
 			$this->setIdusuario($row['idusuario']);
 			$this->setDeslogin($row['deslogin']);
 			$this->setDessenha($row['dessenha']);
@@ -66,35 +64,32 @@ class Usuario {
 
 		}
 
-
-
 	}
 
-
-	//Inicio: DAO-Data Access Object para lista dados:
+	//Inicio: DAO - Data Access Object para listar dados:
 	public static function getList(){
 
-		$sql = new Sql();
+		$sql = new SqlServer("dphp7","localhost\SQLEXPRESS02","sa","root");
 
-		return $sql->select("SELECT * FROM tb_usuario ORDER BY deslogin");
+		return $sql->select("SELECT * FROM tb_usuarios ORDER BY deslogin");
 
 	}
 
 	public static function search($login){
 
-		$sql = new Sql();
+		$sql = new SqlServer("dphp7","localhost\SQLEXPRESS02","sa","root");
 
-		return $sql->select("SELECT * FROM tb_usuario WHERE deslogin LIKE :SEARCH ORDER BY deslogin",array(
-			":SEARCH"=>"%".$login."%"
+		return $sql->select("SELECT * FROM tb_usuarios WHERE deslogin LIKE :LOGIN ORDER BY deslogin", array(
+			":LOGIN"=>"%".$login."%"
 		));
 
 	}
 
-	public function login($login, $password){
+	public function login($login,$password){
 
-		$sql = new Sql();
+		$sql = new SqlServer("dphp7","localhost\SQLEXPRESS02","sa","root");
 
-		$results = $sql->select("SELECT * FROM tb_usuario WHERE deslogin = :LOGIN AND dessenha = :PASSWORD", array(
+		$results = $sql->select("SELECT * FROM tb_usuarios WHERE deslogin = :LOGIN AND dessenha = :PASSWORD", array(
 			":LOGIN"=>$login,
 			":PASSWORD"=>$password
 		)); 
@@ -118,7 +113,7 @@ class Usuario {
 
 	}
 
-	//Fim: DAO-Data Access Object para lista dados
+	//Fim : DAO - Data Access Object para listar dados:
 
 	public function __toString(){
 
@@ -130,6 +125,9 @@ class Usuario {
 		));
 
 	}
+	
+	
+
 
 }
 

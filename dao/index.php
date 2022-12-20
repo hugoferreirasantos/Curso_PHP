@@ -12,11 +12,27 @@ echo json_encode($usuarios);
 
 */
 
-//Utilizando a Class Usuário:
-$root = new Usuario();
+//Utilizando a Class Usuário Carrega um usuário:
+//$root = new Usuario();
+//$root->loadByID(3);
+//echo $root;
 
-$root->loadByID(3);
 
-echo $root;
+//Carrega uma Lista de Usuários:
+//$list = Usuario::getList();
+//echo json_encode($list);
+
+
+//Carrega uma lista de usuários buscando pelo login:
+//$search = Usuario::search("j");
+//echo json_encode($search);
+
+//Carrega um usuário usando um login e a senha:
+$usuario = new Usuario();
+$usuario->login("joao","$%DFGN123");
+
+echo $usuario;
+
+
 
 ?>

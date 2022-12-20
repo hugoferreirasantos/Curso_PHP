@@ -8,27 +8,28 @@ class SqlServer extends PDO{
 
 
 	//Métodos:
-	public function __construct($tipoBanco,$nomeBanco,$server,$usuario,$senha){
+	public function __construct($nomeBanco,$server,$usuario,$senha){
 
-		$this->conn = new PDO("$tipoBanco:Database=$nomeBanco;server=$server;ConnectionPooling=0", "$usuario","$senha");
+		$this->conn = new PDO("sqlsrv:Database=$nomeBanco;server=$server;ConnectionPooling=0", "$usuario","$senha");
 
 	}
 
 	//Inicio: Método para setar Varios Parâmetros:
 
-	private function setParams($stament, $parameters= array()){
+	private function setParams($statement, $parameters = array()){
 
 		foreach($parameters as $key => $value){
 
-			$this->setParam($key, $value);
+			$this->setParam($statement,$key,$value);
 
 		}
 
 	}
 
-	private function setParam($stament, $key, $value){
+	
+	private function setParam($statement, $key, $value){
 
-		$stament->bindParam($key, $value);
+		$statement->bindParam($key, $value);
 
 	}
 
