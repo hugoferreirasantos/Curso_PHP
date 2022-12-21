@@ -32,7 +32,7 @@ echo json_encode($usuarios);
 //$usuario->login("joao","$%DFGN123");
 //echo $usuario;
 
-/*Utilizando o método insert():
+/*Utilizando o método insert() inserir usuários:
 $aluno = new Usuario("aluno","@lun0");
 	Antes de colocar o método construtor:
 	//$aluno->setDeslogin("aluno");
@@ -42,11 +42,20 @@ $aluno->insert();
 
 echo $aluno; */
 
-//Utilizando o Método UPDATE():
+/*Utilizando o Método UPDATE() Alteração de usuário:
 $usuario = new Usuario();
 $usuario->loadById(13);
 
 $usuario->update("professor","$%¨&HHN");
+
+echo $usuario; */
+
+
+//Utilizando o Método DELETE():
+$usuario = new Usuario();
+$usuario->loadById(7);
+
+$usuario->delete();
 
 echo $usuario;
 

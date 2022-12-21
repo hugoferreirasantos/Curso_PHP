@@ -157,6 +157,25 @@ class Usuario {
 
 	 //Fim: DAO - Data Access Object UPDATE:
 
+	 //Inicio: DAO -Data Access Object DELETE:
+	public function delete(){
+
+		$sql = new Sql();
+
+		$sql->query("DELETE FROM tb_usuario WHERE idusuario = :ID",array(
+			":ID"=>$this->getIdusuario()
+		));
+
+		//Zerar os valore que estão dentro dos objetos:
+		$this->setIdusuario(0);
+		$this->setDeslogin("");
+		$this->setDessenha("");
+		$this->setDtcadastro(new DateTime());
+
+	}
+
+	 //Fim: DAO -Data Access Object DELETE:
+
 
 	//Método Magico Construtor:
 	public function __construct($login = "", $password = ""){
