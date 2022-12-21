@@ -57,12 +57,7 @@ class Usuario {
 		//if(isset($results[0])){}
 		if(count($results) > 0){
 
-			$row = $results[0];
-
-			$this->setIdusuario($row['idusuario']);
-			$this->setDeslogin($row['deslogin']);
-			$this->setDessenha($row['dessenha']);
-			$this->setDtcadastro(new DateTime($row['dtcadastro']));
+			$this->setData($results[0]);
 
 		}
 
@@ -102,12 +97,8 @@ class Usuario {
 		//if(isset($results[0])){}
 		if(count($results) > 0){
 
-			$row = $results[0];
 
-			$this->setIdusuario($row['idusuario']);
-			$this->setDeslogin($row['deslogin']);
-			$this->setDessenha($row['dessenha']);
-			$this->setDtcadastro(new DateTime($row['dtcadastro']));
+			$this->setData($results[0]);
 
 		} else{
 
@@ -117,6 +108,65 @@ class Usuario {
 
 
 	}
+
+	//Inicio: Método de inserção de valores no banco:
+
+	public function setData($data){
+
+		$this->setIdusuario($data['idusuario']);
+		$this->setDeslogin($data['deslogin']);
+		$this->setDessenha($data['dessenha']);
+		$this->setDtcadastro(new DateTime($data['dtcadastro']));
+
+	}
+
+	public function insert(){
+
+		$sql = new Sql();
+
+		$results = $sql->select("CALL sp_usuario_insert(:LOGIN, :PASSWORD)",array(
+			":LOGIN"=>$this->getDeslogin(),
+			":PASSWORD"=>$this->getDessenha()
+		)); //Aplicando um procidory:
+
+		if(count($results) > 0){
+
+			$this->setData($results[0]);
+
+		}
+
+	}
+	//Fim: Método de inserção de valores no banco:
+
+	 //Inicio: DAO - Data Access Object UPDATE:
+	public function update($login, $password){
+
+		//Atribuir valore:
+		$this->setDeslogin($login);
+		$this->setDessenha($password);
+
+		$sql = new Sql();
+
+		$sql->query("UPDATE tb_usuario SET deslogin = :LOGIN, dessenha = :PASSWORD WHERE idusuario = :ID",array(
+			":LOGIN"=>$this->getDeslogin(),
+			":PASSWORD"=>$this->getDessenha(),
+			":ID"=>$this->getIdusuario()
+		));
+
+	}
+
+	 //Fim: DAO - Data Access Object UPDATE:
+
+
+	//Método Magico Construtor:
+	public function __construct($login = "", $password = ""){
+
+		$this->setDeslogin($login);
+		$this->setDessenha($password);
+
+	}
+
+	
 
 	//Fim: DAO-Data Access Object para lista dados
 

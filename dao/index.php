@@ -28,8 +28,25 @@ echo json_encode($usuarios);
 //echo json_encode($search);
 
 //Carrega um usuário usando um login e a senha:
+//$usuario = new Usuario();
+//$usuario->login("joao","$%DFGN123");
+//echo $usuario;
+
+/*Utilizando o método insert():
+$aluno = new Usuario("aluno","@lun0");
+	Antes de colocar o método construtor:
+	//$aluno->setDeslogin("aluno");
+	//$aluno->setDessenha("@lun0");
+
+$aluno->insert();
+
+echo $aluno; */
+
+//Utilizando o Método UPDATE():
 $usuario = new Usuario();
-$usuario->login("joao","$%DFGN123");
+$usuario->loadById(13);
+
+$usuario->update("professor","$%¨&HHN");
 
 echo $usuario;
 
