@@ -11,6 +11,7 @@ class Sql extends PDO{
 
 		$this->conn = new PDO("mysql:host=127.0.0.1:3307;dbname=dbphp7", "root", "");
 
+
 	}
 
 	//Método para setar Varios Parâmetros:

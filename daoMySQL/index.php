@@ -21,10 +21,27 @@ $user = Usuario::search("r");
 echo json_encode($user); */
 
 //Carrega e busca pelo usuario e senha:
-$usuario = new Usuario();
-$usuario->login("joaqui","!@DFV");
+//$usuario = new Usuario();
+//$usuario->login("joaqui","!@DFV");
+//echo $usuario;
 
-echo $usuario;
+/*Utilizando o método insert() - inserir dados no banco:
+$aluno = new Usuario("aluno","hjJK@12");
+$aluno->insert();
+echo $aluno; */
+
+/*Utilizando o método UPDATE() - Alterar dados no banco:
+$user = new Usuario();
+$user->loadById(4);
+$user->update("maria","123sdh@");
+echo $user; */
+
+//Utilizano o método DELETE() - Apagar dados:
+$user = new Usuario();
+$user->loadById(3);
+
+$user->delete();
+echo $user;
 
 
 

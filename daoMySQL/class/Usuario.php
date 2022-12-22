@@ -58,12 +58,7 @@ class Usuario{
 		//Verificando se existe elementos dentro do banco:
 		if(count($results[0]) > 0){
 
-			$row = $results[0];
-
-			$this->setIdusuario($row['idusuario']);
-			$this->setDeslogin($row['deslogin']);
-			$this->setDessenha($row['dessenha']);
-			$this->setDtcadastro(new DateTime($row['dtcadastro']));
+			$this->setData($results[0]);
 
 
 		}
@@ -110,12 +105,7 @@ class Usuario{
 		//Valida se existe algum dado:
 		if(count($results[0]) > 0){
 
-			$row = $results[0];
-
-			$this->setIdusuario($row['idusuario']);
-			$this->setDeslogin($row['deslogin']);
-			$this->setDessenha($row['dessenha']);
-			$this->setDtcadastro(new DateTime($row['dtcadastro']));
+			$this->setData($results[0]);
 
 		} else{
 
@@ -128,6 +118,84 @@ class Usuario{
 
 	 //Fim : DAO-Data Access Object para lista dados:
 
+	//Inicio: Método de inserção de valores no banco de dados:
+
+	public function setData($data){
+
+		$this->setIdusuario($data['idusuario']);
+		$this->setDeslogin($data['deslogin']);
+		$this->setDessenha($data['dessenha']);
+		$this->setDtcadastro(new DateTime($data['dtcadastro']));
+
+	}
+
+	public function insert(){
+
+		$sql = new Mysql();
+
+		$results = $sql->select("CALL sp_usuario_insert(:LOGIN,:PASSWORD)",array(
+			":LOGIN"=>$this->getDeslogin(),
+			":PASSWORD"=>$this->getDessenha()
+		)); //Aplicando uma Procedure:
+
+		if(count($results) > 0){
+
+			$this->setData($results[0]);
+
+		}
+
+	}
+
+	//Fim: Método de inserção de valores no banco de dados:
+
+	//Inicio: DAO - Data Access Object UPDATE:
+	public function update($login,$password){
+
+		//Atribuir Valores:
+		$this->setDeslogin($login);
+		$this->setDessenha($password);
+
+		$sql = new Mysql();
+
+		$sql->query("UPDATE tb_usuario SET deslogin = :LOGIN, dessenha = :PASSWORD WHERE idusuario = :ID",array(
+			":LOGIN"=>$this->getDeslogin(),
+			":PASSWORD"=>$this->getDessenha(),
+			":ID"=>$this->getIdusuario()
+		));
+
+	}
+
+	//Fim: DAO - Data Access Object UPDATE:
+
+	//Inicio : DAO - Data Access Object DELETE:
+	public function delete(){
+
+		$sql = new Mysql();
+
+		$sql->query("DELETE FROM tb_usuario WHERE idusuario = :ID",array(
+			":ID"=>$this->getIdusuario()
+		));
+
+		//Zera os valores que estão dentro das variávies do Objeto:
+		$this->setIdusuario(0);
+		$this->setDeslogin("");
+		$this->setDessenha("");
+		$this->setDtcadastro(new DateTime());
+
+	}
+
+	//Fim: DAO - Data Access Object DELETE:
+
+
+	//Inicio: Método Construtor:
+	public function __construct($login="",$password=""){
+
+		$this->setDeslogin($login);
+		$this->setDessenha($password);
+
+
+	}
+	//Fim: Método Construtor:
 
 	 //Inicio: Método Mágico Construtor __toString():
 	public function __toString(){

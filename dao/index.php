@@ -33,12 +33,12 @@ echo json_encode($usuarios);
 //echo $usuario;
 
 /*Utilizando o método insert() inserir usuários:
-$aluno = new Usuario("aluno","@lun0");
-	Antes de colocar o método construtor:
+$aluno = new Usuario("alana","456G@#");
+	//Antes de colocar o método construtor:
 	//$aluno->setDeslogin("aluno");
 	//$aluno->setDessenha("@lun0");
 
-$aluno->insert();
+$aluno->insert(); 
 
 echo $aluno; */
 
@@ -57,7 +57,7 @@ $usuario->loadById(7);
 
 $usuario->delete();
 
-echo $usuario;
+echo $usuario; 
 
 
 

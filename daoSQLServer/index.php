@@ -28,10 +28,26 @@ echo $user; */
 //echo json_encode($login);
 
 //Carregar uma consulta por login e senha no banco:
-$usuario = new Usuario();
-$usuario->login("sergio","456@ERvb");
+//$usuario = new Usuario();
+//$usuario->login("sergio","456@ERvb");
+//echo $usuario;
 
-echo $usuario;
+/*Utilizando o método insert() - inserir usuarios:
+$aluno = new Usuario("ana","Asd#%412");
+$aluno->insert();
+echo $aluno; */
+
+/*Utilizando o método UPDATE - Alteração:
+$user = new Usuario();
+$user->loadById(7);
+$user->update("adam","452@#d");
+echo $user; */
+
+//Utilizando o método DELETE - exclusão de dados:
+$user = new Usuario();
+$user->loadById(7);
+$user->delete();
+echo $user;
 
 
 
