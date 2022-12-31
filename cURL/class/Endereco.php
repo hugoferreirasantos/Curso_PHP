@@ -160,7 +160,19 @@ Class Endereco{
 
 	}
 
-	 //Fim: Método getList();
+	 //Fim: Método getList():
+
+	 //Inicio: Método search:
+	public function search($cep){
+
+		$sql = new Sql();
+
+		return $sql->select("SELECT * FROM tb_endereco WHERE cep LIKE :SEARCH ORDER BY cidade",array(
+			":SEARCH"=>"%".$cep."%"
+		));
+
+	}
+	 //Fim: Método search:
 
 	 //Inicio: Método __toString:
 	public function __toString(){
