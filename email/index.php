@@ -37,23 +37,23 @@ $mail->SMTPSecure = 'tls';
 $mail->SMTPAuth = true;
 
 //Username to use for SMTP authentication - use full email address for gmail
-$mail->Username = 'hugoxtl125@gmail.com';
+$mail->Username = '';
 
 //Password to use for SMTP authentication
-$mail->Password = 'ekrvkabevxjhfxss';
+$mail->Password = '';
 
 //Set who the message is to be sent from
 //Note that with gmail you can only use your account address (same as `Username`)
 //or predefined aliases that you have configured within your account.
 //Do not use user-submitted addresses in here
-$mail->setFrom('hugosantosadm125@gmail.com', 'Curso PHP 7');
+$mail->setFrom('', 'Curso PHP 7');
 
 //Set an alternative reply-to address
 //This is a good place to put user-submitted addresses
 //$mail->addReplyTo('replyto@example.com', 'First Last');
 
 //Set who the message is to be sent to
-$mail->addAddress('hugosantosadm125@gmail.com', 'Suporte Hcode');
+$mail->addAddress('', 'Suporte Hcode');
 
 //Set the subject line
 $mail->Subject = 'Testando a classe PHPMailer com Gmail';
